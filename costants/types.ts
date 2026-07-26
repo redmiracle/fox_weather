@@ -1,9 +1,36 @@
-import {enumUtil} from "zod/v3/helpers/enumUtil";
 
+export interface weekDadaType {
+    minTempWeek: string;
+    maxTempWeek: string;
+    days: weekDataForDayType;
+}
+
+export interface weekDataForDayType{
+    day:string,
+    image:string,
+    minTemperature:string,
+    maxTemperature:string,
+
+
+}
 export interface coordinate {
     lat: string,
     lng: string,
 }
+
+export interface conditionDada  {
+    "text": string,
+    "icon": string,
+    "code": number,
+}
+
+export interface dayDataType {
+    time: string,
+    temperature: number,
+    condition: conditionDada,
+
+}
+
 
 
 
@@ -125,7 +152,7 @@ interface forecatsHour{
     "pressure_in": number,
     "precip_mm": number,
     "precip_in":number,
-    "snow_cm": number, ,
+    "snow_cm": number,
     "humidity": number,
     "cloud": number,
     "feelslike_c": number,
@@ -164,7 +191,7 @@ interface forecatsHour{
 
 }
 
-interface forecastDataDayReq {
+export interface forecastDataDayReq {
 
     "date": string,
     "date_epoch": number,

@@ -1,6 +1,7 @@
 import {API_KEY, base_url} from "@/costants/apiData";
 import {coordinate, forecastRequest, weatherData} from "@/costants/types";
 import {getCurrentData} from "@/lib/service/servisLib/getCurrentData";
+import {getForecastDayData} from "@/lib/service/servisLib/getForecastDayData";
 
 interface error {
     error: string;
@@ -18,7 +19,10 @@ export async function getForecast(coordinates:coordinate):Promise<weatherData|er
             throw new Error(`WeatherAPI responded with status: ${response.status}`);
         }
         const weatherData= {
-            current:getCurrentData(res)
+            preview: {
+                current: getCurrentData(res),
+                forecast:getForecastDayData(res)
+            }
         }
 
         return weatherData

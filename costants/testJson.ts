@@ -1,6 +1,5 @@
-{
-  "forcast": {
-    "location": {
+ export const testJson={
+  "location": {
       "name": "Ashdod",
       "region": "HaMerkaz",
       "country": "Israel",
@@ -9352,4 +9351,3 @@
       ]
     }
   }
-}
