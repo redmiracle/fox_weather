@@ -1,6 +1,8 @@
 
 //simple
 
+import {convertHour, getDaysUntilFullMoon} from "@/lib/service/servisLib/calculationForecast";
+
 export interface coordinate {
     lat: string,
     lng: string,
@@ -29,16 +31,6 @@ export interface dayDataType {
 
 
 
-
-
-
-
-
-
-
-
-
-
 //for week
 export interface weekDadaType {
 
@@ -52,10 +44,23 @@ export interface weekDadaType {
 }
 
 export interface weekDataForDayType {
-    day: string,
-    image: string,
-    minTemperature: string,
-    maxTemperature: string,
+    day:string,
+    image:string,
+    minTemperature:string,
+    maxTemperature:string,
+    moon:{
+        moonIllumination:number,
+        moon_phase:string,
+        isMoonUp:number,
+        dayBeforeNewMoon:number,
+
+    },
+    sun:{
+        sunrise: string,
+        sunset: string,
+        firstLight:string,
+        lastLight:string,
+    }
 
 
 }

@@ -9,7 +9,7 @@ const convertHour=(timeEpoch:number)=>{
     }).format(new Date(timeEpoch * 1000));
 }
 
-export const getForecastDayData = (data:forecastRequest) => {
+export const getForecastDayData = (data:forecastRequest):dayDataType[] => {
 
 
     const localEpoch=data.location.localtime_epoch;
