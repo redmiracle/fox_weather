@@ -1,14 +1,12 @@
-import {conditionDada, dayDataType, forecastRequest, forecatsHour} from "@/costants/types";
+import {dayDataType, forecastRequest, forecatsHour} from "@/costants/types";
 
 
 const convertHour=(timeEpoch:number)=>{
-    const hour = new Intl.DateTimeFormat("ru-RU", {
+    return new Intl.DateTimeFormat("ru-RU", {
         hour: "numeric",
         hour12: false,
         timeZone: "Asia/Jerusalem",
     }).format(new Date(timeEpoch * 1000));
-
-    return hour;
 }
 
 export const getForecastDayData = (data:forecastRequest) => {
