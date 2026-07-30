@@ -1,8 +1,13 @@
 
 export interface weekDadaType {
-    minTempWeek: string;
-    maxTempWeek: string;
-    days: weekDataForDayType;
+
+    temperature:{
+        minTempWeek: string;
+        maxTempWeek: string;
+        days: weekDataForDayType[];
+
+    }
+
 }
 
 export interface weekDataForDayType{
@@ -133,7 +138,7 @@ interface currentDaraReq extends windDataReq,airQuality {
 
 }
 
-interface forecatsHour{
+export interface forecatsHour{
     "time_epoch": number,
     "time": string,
     "temp_c": number,

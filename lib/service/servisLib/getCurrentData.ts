@@ -20,7 +20,8 @@ export const getCurrentData=(res:forecastRequest)=>{
                     "text": current.condition.text,
                     "icon": current.condition.icon,
                     "code": current.condition.code+"",
-                }
+                },
+
 
         }
 

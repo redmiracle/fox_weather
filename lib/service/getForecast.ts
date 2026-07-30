@@ -2,6 +2,7 @@ import {API_KEY, base_url} from "@/costants/apiData";
 import {coordinate, forecastRequest, weatherData} from "@/costants/types";
 import {getCurrentData} from "@/lib/service/servisLib/getCurrentData";
 import {getForecastDayData} from "@/lib/service/servisLib/getForecastDayData";
+import {getForecastWeekData} from "@/lib/service/servisLib/getForecastWeekData";
 
 interface error {
     error: string;
@@ -21,7 +22,8 @@ export async function getForecast(coordinates:coordinate):Promise<weatherData|er
         const weatherData= {
             preview: {
                 current: getCurrentData(res),
-                forecast:getForecastDayData(res)
+                forecast:getForecastDayData(res),
+                week:getForecastWeekData(res)
             }
         }
 

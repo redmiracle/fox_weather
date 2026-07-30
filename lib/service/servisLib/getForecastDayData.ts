@@ -1,4 +1,4 @@
-import {conditionDada, dayDataType, forecastRequest} from "@/costants/types";
+import {conditionDada, dayDataType, forecastRequest, forecatsHour} from "@/costants/types";
 
 
 const convertHour=(timeEpoch:number)=>{
@@ -18,33 +18,28 @@ export const getForecastDayData = (data:forecastRequest) => {
     const currentDayData=data.forecast.forecastday[0].hour;
     const newDayData=data.forecast.forecastday[1].hour;
 
-    const getDayData=(time:string,temp:number,condition:conditionDada):dayDataType=> {
+    const getDayData=(data:forecatsHour):dayDataType=> {
         return {
-            time: time,
-            temperature: temp,
-            condition: {...condition}
+            time: convertHour(data.time_epoch),
+            temperature: data.temp_c,
+            condition: {...data.condition},
         }
     }
 
 
-    const nowDayData=getDayData("now",data.current.temp_c,data.current.condition);
+    // const nowDayData=getDayData(data.current);
 
     const currentDayArr=currentDayData
         .filter((value => localEpoch < value.time_epoch))
-        .map((value)=>{
-            return getDayData(convertHour(value.time_epoch),value.temp_c,value.condition);
+        .map(value => getDayData(value))
 
-    })
+
     const newDayArr=newDayData
         .filter((value =>+convertHour(localEpoch)>+convertHour(value.time_epoch)))
-        .map((value)=>{
-            return getDayData(convertHour(value.time_epoch),value.temp_c,value.condition)
+        .map(value => getDayData(value))
 
 
-    })
-
-
-    return [nowDayData,...currentDayArr,...newDayArr];
+    return [...currentDayArr,...newDayArr];
 
 }
 
