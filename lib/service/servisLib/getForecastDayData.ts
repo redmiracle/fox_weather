@@ -27,8 +27,6 @@ export const getForecastDayData = (data:forecastRequest) => {
     }
 
 
-    // const nowDayData=getDayData(data.current);
-
     const currentDayArr=currentDayData
         .filter((value => localEpoch < value.time_epoch))
         .map(value => getDayData(value))

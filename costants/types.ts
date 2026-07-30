@@ -1,33 +1,24 @@
 
-export interface weekDadaType {
+//simple
 
-    temperature:{
-        minTempWeek: string;
-        maxTempWeek: string;
-        days: weekDataForDayType[];
-
-    }
-
-}
-
-export interface weekDataForDayType{
-    day:string,
-    image:string,
-    minTemperature:string,
-    maxTemperature:string,
-
-
-}
 export interface coordinate {
     lat: string,
     lng: string,
 }
 
-export interface conditionDada  {
+export interface conditionDada {
     "text": string,
     "icon": string,
     "code": number,
 }
+
+
+
+
+
+
+//for forecast day
+
 
 export interface dayDataType {
     time: string,
@@ -40,31 +31,165 @@ export interface dayDataType {
 
 
 
-export interface currentDataType {
-    name: string,
-    temperature: string,
-    wind: string,
-    pressure: string,
-    feelsLike:string,
-    maxTemp:string,
-    minTemp:string,
 
-    condition:
-        {
+
+
+
+
+
+
+
+//for week
+export interface weekDadaType {
+
+    temperature: {
+        minTempWeek: string;
+        maxTempWeek: string;
+        days: weekDataForDayType[];
+
+    }
+
+}
+
+export interface weekDataForDayType {
+    day: string,
+    image: string,
+    minTemperature: string,
+    maxTemperature: string,
+
+
+}
+
+
+//main
+
+
+export interface weatherData {
+    preview: {
+        current: {
+            name: string;
+            temperature: string;
+            wind: string;
+            pressure: string;
+            feelsLike: string;
+            maxTemp: string;
+            minTemp: string;
+            condition: { text: string; icon: string; code: string; };
+        };
+        forecast: dayDataType[];
+        week: weekDadaType;
+    };
+}
+
+
+
+
+// export interface currentDataType {
+//     name: string,
+//     temperature: string,
+//     wind: string,
+//     pressure: string,
+//     feelsLike: string,
+//     maxTemp: string,
+//     minTemp: string,
+//
+//     condition:
+//         {
+//             "text": string,
+//             "icon": string,
+//             "code": string,
+//         }
+//
+//
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Request
+
+export interface forecastDataDayReq {
+
+    "date": string,
+    "date_epoch": number,
+    "day": {
+        "maxtemp_c": number,
+        "maxtemp_f": number,
+        "mintemp_c": number,
+        "mintemp_f": number,
+        "avgtemp_c": number,
+        "avgtemp_f": number,
+        "maxwind_mph": number,
+        "maxwind_kph": number,
+        "totalprecip_mm": number,
+        "totalprecip_in": number,
+        "totalsnow_cm": number,
+        "avgvis_km": number,
+        "avgvis_miles": number,
+        "avghumidity": number,
+        "daily_will_it_rain": number,
+        "daily_chance_of_rain": number,
+        "daily_will_it_snow": number,
+        "daily_chance_of_snow": number,
+        "condition": {
             "text": string,
             "icon": string,
-            "code": string,
-        }
+            "code": number,
+        },
+        "uv": 10.7,
+        "avgwetbulb_c": number,
+        "avgwetbulb_f": number,
+        "maxwetbulb_c": number,
+        "maxwetbulb_f": number,
+        "air_quality": {
+            "co": number,
+            "no2": number,
+            "o3": number,
+            "so2": number,
+            "pm2_5": number,
+            "pm10": number,
+            "us-epa-index": number,
+            "gb-defra-index": number,
+        },
+    },
+    "astro": {
+        "sunrise": "05:46 AM",
+        "sunset": "07:48 PM",
+        "moonrise": "06:17 AM",
+        "moonset": "08:44 PM",
+        "moon_phase": "New Moon",
+        "moon_illumination": 3,
+        "is_moon_up": 1,
+        "is_sun_up": 1
+    },
+    hour: forecatsHour[]
+}
+
+
+export interface forecastRequest {
+
+    location: locationDataReq,
+    current: currentDaraReq,
+    forecast: {
+        forecastday: forecastDataDayReq[],
+    }
 
 
 }
-export interface weatherData {
-    current:currentDataType,
-}
+
 
 
 export interface locationDataReq {
-    "name":string,
+    "name": string,
     "region": string,
     "country": string,
     "lat": number,
@@ -109,17 +234,18 @@ export interface windDataReq {
 
 
 export interface airQuality {
-    "co":number,
-        "no2": number,
-        "o3": number,
-        "so2": number,
-        "pm2_5": number,
-        "pm10": number,
-        "us-epa-index": number,
-        "gb-defra-index": number
+    "co": number,
+    "no2": number,
+    "o3": number,
+    "so2": number,
+    "pm2_5": number,
+    "pm10": number,
+    "us-epa-index": number,
+    "gb-defra-index": number
 }
 
-interface currentDaraReq extends windDataReq,airQuality {
+
+interface currentDaraReq extends windDataReq, airQuality {
     "last_updated_epoch": number,
     "last_updated": string,
     "temp_c": number,
@@ -138,7 +264,8 @@ interface currentDaraReq extends windDataReq,airQuality {
 
 }
 
-export interface forecatsHour{
+
+export interface forecatsHour {
     "time_epoch": number,
     "time": string,
     "temp_c": number,
@@ -156,7 +283,7 @@ export interface forecatsHour{
     "pressure_mb": number,
     "pressure_in": number,
     "precip_mm": number,
-    "precip_in":number,
+    "precip_in": number,
     "snow_cm": number,
     "humidity": number,
     "cloud": number,
@@ -168,11 +295,11 @@ export interface forecatsHour{
     "heatindex_f": number,
     "dewpoint_c": number,
     "dewpoint_f": number,
-    "will_it_rain":number ,
+    "will_it_rain": number,
     "chance_of_rain": number,
     "will_it_snow": number,
     "chance_of_snow": number,
-    "vis_km":number,
+    "vis_km": number,
     "vis_miles": number
     "gust_mph": number,
     "gust_kph": number,
@@ -195,81 +322,3 @@ export interface forecatsHour{
     "gti": number
 
 }
-
-export interface forecastDataDayReq {
-
-    "date": string,
-    "date_epoch": number,
-    "day": {
-    "maxtemp_c": number,
-        "maxtemp_f": number,
-        "mintemp_c": number,
-        "mintemp_f": number,
-        "avgtemp_c": number,
-        "avgtemp_f": number,
-        "maxwind_mph": number,
-        "maxwind_kph": number,
-        "totalprecip_mm": number,
-        "totalprecip_in": number,
-        "totalsnow_cm": number,
-        "avgvis_km": number,
-        "avgvis_miles": number,
-        "avghumidity": number,
-        "daily_will_it_rain": number,
-        "daily_chance_of_rain": number,
-        "daily_will_it_snow": number,
-        "daily_chance_of_snow": number,
-        "condition": {
-        "text": string,
-            "icon": string,
-            "code": number,
-    },
-    "uv": 10.7,
-        "avgwetbulb_c": number,
-        "avgwetbulb_f": number,
-        "maxwetbulb_c": number,
-        "maxwetbulb_f": number,
-        "air_quality": {
-        "co": number,
-            "no2": number,
-            "o3": number,
-            "so2": number,
-            "pm2_5": number,
-            "pm10": number,
-            "us-epa-index":number,
-            "gb-defra-index": number,
-    },
-},
-    "astro": {
-    "sunrise": "05:46 AM",
-        "sunset": "07:48 PM",
-        "moonrise": "06:17 AM",
-        "moonset": "08:44 PM",
-        "moon_phase": "New Moon",
-        "moon_illumination": 3,
-        "is_moon_up": 1,
-        "is_sun_up": 1
-},
-    hour:forecatsHour[]
-}
-
-
-
-
-
-
-
-export interface forecastRequest  {
-
-    location:locationDataReq,
-    current: currentDaraReq,
-    forecast: {
-        forecastday:forecastDataDayReq[],
-    }
-
-
-
-
-
-}
-

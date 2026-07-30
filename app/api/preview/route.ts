@@ -1,5 +1,5 @@
 import { NextRequest,NextResponse} from "next/server";
-import {getCoordinates} from "@/lib/service/servisLib/getCoordinates";
+import {getCoordinate} from "@/lib/service/servisLib/calculationForecast";
 
 import {getForecast} from "@/lib/service/getForecast";
 
@@ -10,7 +10,7 @@ import {getForecast} from "@/lib/service/getForecast";
 
 export async function GET(request:NextRequest) {
 
-    const coordinates=getCoordinates(request)
+    const coordinates=getCoordinate(request)
     const data = await getForecast(coordinates)
     // const [cityWeather,forcast] =await Promise.all([
     //     getWeatherData(coordinates),

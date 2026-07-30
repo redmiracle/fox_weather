@@ -27,6 +27,7 @@ export async function getForecast(coordinates:coordinate):Promise<weatherData|er
             }
         }
 
+
         return weatherData
     }catch(error) {
 
