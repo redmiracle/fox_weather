@@ -12,10 +12,6 @@ export async function GET(request:NextRequest) {
 
     const coordinates=getCoordinate(request)
     const data = await getForecast(coordinates)
-    // const [cityWeather,forcast] =await Promise.all([
-    //     getWeatherData(coordinates),
-    //     getForcast(coordinates)
-    // ])
 
 
     return NextResponse.json({
