@@ -1,7 +1,4 @@
-
 //simple
-
-import {convertHour, getDaysUntilFullMoon} from "@/lib/service/servisLib/calculationForecast";
 
 export interface coordinate {
     lat: string,
@@ -15,8 +12,23 @@ export interface conditionDada {
 }
 
 
+//current
 
 
+export interface currentDataType {
+    name: string
+    temperature: string
+    wind: string
+    pressure: string
+    feelsLike: string
+    maxTemp: string
+    minTemp: string
+    condition: {
+        text: string
+        icon: string
+        code: string
+    }
+}
 
 
 //for forecast day
@@ -28,7 +40,6 @@ export interface dayDataType {
     condition: conditionDada,
 
 }
-
 
 
 //for week
@@ -43,24 +54,28 @@ export interface weekDadaType {
 
 }
 
+export type sunDataType = {
+
+    sunrise: string,
+    sunset: string,
+    firstLight: string,
+    lastLight: string,
+
+}
+
 export interface weekDataForDayType {
-    day:string,
-    image:string,
-    minTemperature:string,
-    maxTemperature:string,
-    moon:{
-        moonIllumination:number,
-        moon_phase:string,
-        isMoonUp:number,
-        dayBeforeNewMoon:number,
+    day: string,
+    image: string,
+    minTemperature: string,
+    maxTemperature: string,
+    moon: {
+        moonIllumination: number,
+        moon_phase: string,
+        isMoonUp: number,
+        dayBeforeNewMoon: number,
 
     },
-    sun:{
-        sunrise: string,
-        sunset: string,
-        firstLight:string,
-        lastLight:string,
-    }
+    sun:sunDataType
 
 
 }
@@ -71,22 +86,11 @@ export interface weekDataForDayType {
 
 export interface weatherData {
     preview: {
-        current: {
-            name: string;
-            temperature: string;
-            wind: string;
-            pressure: string;
-            feelsLike: string;
-            maxTemp: string;
-            minTemp: string;
-            condition: { text: string; icon: string; code: string; };
-        };
+        current: currentDataType;
         forecast: dayDataType[];
         week: weekDadaType;
     };
 }
-
-
 
 
 // export interface currentDataType {
@@ -107,17 +111,6 @@ export interface weatherData {
 //
 //
 // }
-
-
-
-
-
-
-
-
-
-
-
 
 
 //Request
@@ -190,7 +183,6 @@ export interface forecastRequest {
 
 
 }
-
 
 
 export interface locationDataReq {

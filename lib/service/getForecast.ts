@@ -17,6 +17,7 @@ export async function getForecast(coordinates:coordinate):Promise<weatherData|er
         const response=await fetch(`${base_url}/forecast.json?key=${API_KEY}&q=${reqCor}&days=7&aqi=yes&alerts=no\``)
         const res=await response.json() as forecastRequest
         if (!response.ok) {
+            console.log("Forecast not found");
             throw new Error(`WeatherAPI responded with status: ${response.status}`);
         }
         const weatherData= {

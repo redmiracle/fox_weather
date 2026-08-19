@@ -1,4 +1,4 @@
-import { NextRequest,NextResponse} from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 import {getCoordinate} from "@/lib/service/servisLib/calculationForecast";
 
 import {getForecast} from "@/lib/service/getForecast";
@@ -8,14 +8,14 @@ import {getForecast} from "@/lib/service/getForecast";
 //coordinates Ashdod  31.8014° 34.6435°
 
 
-export async function GET(request:NextRequest) {
+export async function GET(request: NextRequest) {
 
-    const coordinates=getCoordinate(request)
+    const coordinates = getCoordinate(request)
     const data = await getForecast(coordinates)
 
 
     return NextResponse.json({
-      data
+    ...data
     });
 
 }

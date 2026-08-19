@@ -1,6 +1,6 @@
-import {forecastRequest} from "@/costants/types";
+import {currentDataType, forecastRequest} from "@/costants/types";
 
-export const getCurrentData=(res:forecastRequest)=>{
+export const getCurrentData=(res:forecastRequest):currentDataType=>{
 
     const location=res.location
     const current=res.current

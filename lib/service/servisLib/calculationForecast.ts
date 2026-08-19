@@ -8,9 +8,11 @@ export const getCoordinate=(request:NextRequest):coordinate=> {
     const lng=searchParams.get("lng");
 
     if(lat && lng){
+        console.log(`lat=${lat},lng=${lng}`);
         return {lat,lng};
-    }
 
+    }
+     console.log(`error lat=${lat},lng=${lng}`)
     return {lat:"31.8014",lng:"34.6435"};
 
 }

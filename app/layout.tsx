@@ -2,6 +2,8 @@ import type {Metadata, Viewport} from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import QueryProvider from "@/providers/QueryProvider";
+import React from "react";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -16,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js 16 PWA",
-  description: "High-performance PWA",
+  title: "Fox Weather",
+  description: "High-performance weather app",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -42,7 +44,10 @@ export default function RootLayout({
 
 
       <body className="min-h-full flex flex-col">
+      <QueryProvider>
         {children}
+      </QueryProvider>
+
 
       </body>
     </html>
