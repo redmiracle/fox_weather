@@ -4,7 +4,7 @@ import {useQuery} from "@tanstack/react-query";
 import {getWeatherData} from "@/lib/api/getWeather";
 import {useEffect} from "react";
 
-import {dataJson} from "@/costants/dataJson";
+
 import CityWeather from "@/components/widgets/cityWeather";
 import WeatherForHours from "@/components/widgets/weatherForHours";
 
@@ -14,7 +14,8 @@ export default function WeatherPage() {
 
     const {data,isLoading,error}=useQuery({
         queryKey:['weather'],
-        queryFn:getWeatherData
+        queryFn:getWeatherData,
+
     })
 
 
