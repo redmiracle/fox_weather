@@ -1,0 +1,1 @@
+export const convertTemperature=(temp:string)=> Math.round(Number(temp)) +"\u00B0";

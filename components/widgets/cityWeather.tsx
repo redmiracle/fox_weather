@@ -1,6 +1,7 @@
 import {currentDataType} from "@/costants/types";
 import {JSX} from "react";
 import {Card, CardContent, CardFooter, CardHeader} from "@/components/ui/card";
+import {convertTemperature} from "@/components/units/convertFunction";
 
 
 interface Props {
@@ -9,6 +10,8 @@ interface Props {
 
 
 export default function CityWeather({data}: Props): JSX.Element {
+
+    const currentTempStr=data.temperature.replace(/c/gi,"")
 
 
     return (
@@ -19,13 +22,13 @@ export default function CityWeather({data}: Props): JSX.Element {
                     <h1 className={"text-[36px] font-light"}>{data.name}</h1>
                 </CardHeader>
                 <CardContent className={"font-extralight text-[92px] leading-none tracking-[-3px] p-0 m-0"}>
-                    {data.temperature.replace(/c/gi,"")}
+                    {convertTemperature(currentTempStr)}
                 </CardContent>
                 <CardFooter className={"flex flex-col items-center font-normal"}>
                     <p className={"opacity-90 text-[28.5px] text-[#E0F2FE] "}>{data.condition.text}</p>
                     <div className={"text-[17px] tracking-[-0.68px] opacity-60"}>
-                        <span className={"me-2"}>H: {data.maxTemp}</span>
-                        <span>L: {data.minTemp}</span>
+                        <span className={"me-2"}>H: {convertTemperature(data.maxTemp)}</span>
+                        <span>L: {convertTemperature(data.minTemp)}</span>
                     </div>
                 </CardFooter>
 

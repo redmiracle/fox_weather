@@ -1,9 +1,10 @@
 import {Carousel, CarouselContent, CarouselItem} from "@/components/ui/carousel";
 import {dayDataType, sunDataType} from "@/costants/types";
 import {JSX} from "react";
-import {Card, CardFooter, CardHeader} from "@/components/ui/card";
-import ConditionalImage from "@/components/widgets/features/conditionalImage";
+import {Card, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
+import ConditionalImage from "@/components/features/conditionalImage";
 import {Sunrise, Sunset} from "lucide-react";
+import {convertTemperature} from "@/components/units/convertFunction";
 
 interface Props {
     data: dayDataType[]
@@ -35,9 +36,12 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
                                     className={"text-white bg-transparent ring-0 shadow-0 border-0 flex-col items-center justify-center p-0 m-0 "}>
                                     <CardHeader
                                         className={"text-[13px] text-center w-full mb-2"}>{item.time}</CardHeader>
-                                    <ConditionalImage status={"" + item.condition.code}
-                                                      isDay={item.time > sunRise && item.time < sunSet}/>
-                                    <CardFooter className={"text-[17px]"}>{item.temperature}</CardFooter>
+                                    <div className={"mb-2"}>
+                                        <ConditionalImage status={"" + item.condition.code}
+                                                          isDay={item.time > sunRise && item.time < sunSet}/>
+                                    </div>
+                                    <CardFooter
+                                        className={"text-[17px]"}>{convertTemperature(item.temperature + "")}</CardFooter>
                                 </Card>
                             </CarouselItem>
                         )
@@ -47,14 +51,17 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
                             acc.push(
                                 <CarouselItem key={(i + 1) * 10} className={"basis-1/5"}>
                                     <Card
-                                        className={"text-white bg-transparent ring-0 shadow-0 border-0 flex-col items-center justify-center p-0 m-0 "}>
-                                        <CardHeader className={"text-[13px] text-center w-full mb-2"}>{
-                                            isSunRise ? sun.sunrise : sun.sunset}</CardHeader>
+                                        className={"text-white bg-transparent ring-0 shadow-0 border-0 flex-col items-center justify-center p-0 m-0"}>
+                                        <CardHeader className={"mb-2 w-full p-0"}>
+                                            <CardTitle className={"text-[13px]  text-center"}> {isSunRise ? sun.sunrise : sun.sunset}</CardTitle>
+
+                                        </CardHeader>
                                         {isSunRise ?
                                             <Sunrise width={28} height={28} color={"#8cdf49"}/> :
                                             <Sunset width={28} height={28} color={"#ffffff"}/>
                                         }
-                                        <CardFooter className={"text-[15px]"}>{isSunRise?"SUNRISE":"SUNSET"}</CardFooter>
+                                        <CardFooter
+                                            className={"text-[15px] mt-2"}>{isSunRise ? "SUNRISE" : "SUNSET"}</CardFooter>
                                     </Card>
                                 </CarouselItem>
                             )
