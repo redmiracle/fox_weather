@@ -3,13 +3,15 @@
 @import "shadcn/tailwind.css";
 
 
-
 @custom-variant dark (&:is(.dark *));
 body {
     @apply bg-[radial-gradient(ellipse_80%_80%_at_30%_10%,#183E70_10%,#0A1934_90%)] text-white select-none;
 }
 
+.bgMirror {
+    @apply overflow-hidden rounded-lg border border-white/10 bg-white/[0.06] backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]
 
+}
 
 
 @theme inline {

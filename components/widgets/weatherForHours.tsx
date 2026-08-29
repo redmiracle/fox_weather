@@ -20,7 +20,7 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
 
 
     return (
-        <div className={"mt-8"}>
+        <div className={`bgMirror p-2`}>
             <Carousel
                 opts={{
                     align: "center",
