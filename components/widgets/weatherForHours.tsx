@@ -5,6 +5,7 @@ import {Card, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import ConditionalImage from "@/components/features/conditionalImage";
 import {Sunrise, Sunset} from "lucide-react";
 import {convertTemperature} from "@/components/units/convertFunction";
+import {time} from "zod/v4/mini/iso";
 
 interface Props {
     data: dayDataType[]
@@ -17,6 +18,10 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
 //this is actual 23
     const sunRise = sun.sunrise.split(":")[0]
     const sunSet = sun.sunset.split(":")[0]
+    const addZero=(time:string) => {
+        if(time.length<2) return time.padStart(2,"0")
+        return time;
+    }
 
 
     return (
@@ -29,16 +34,16 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
             >
                 <CarouselContent>
                     {data.reduce<JSX.Element[]>((acc, item, i) => {
-                        console.log(item.time)
+                        const time=addZero(item.time)
                         acc.push(
                             <CarouselItem key={i + 1} className={"basis-1/5"}>
                                 <Card
                                     className={"text-white bg-transparent ring-0 shadow-0 border-0 flex-col items-center justify-center p-0 m-0 "}>
                                     <CardHeader
-                                        className={"text-[13px] text-center w-full mb-2"}>{item.time}</CardHeader>
+                                        className={"text-[13px] text-center w-full mb-2"}>{time}</CardHeader>
                                     <div className={"mb-2"}>
                                         <ConditionalImage status={"" + item.condition.code}
-                                                          isDay={item.time > sunRise && item.time < sunSet}/>
+                                                          isDay={time > sunRise && time < sunSet}/>
                                     </div>
                                     <CardFooter
                                         className={"text-[17px]"}>{convertTemperature(item.temperature + "")}</CardFooter>
@@ -46,8 +51,8 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
                             </CarouselItem>
                         )
 
-                        if (item.time.includes(sunRise) || item.time.includes(sunSet)) {
-                            const isSunRise = item.time.includes(sunRise);
+                        if (time.includes(sunRise) || time.includes(sunSet)) {
+                            const isSunRise = time.includes(sunRise);
                             const addKey=isSunRise ? 10 : 11
                             acc.push(
                                 <CarouselItem key={(i + 1) * addKey} className={"basis-1/5"}>
