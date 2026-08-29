@@ -29,6 +29,7 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
             >
                 <CarouselContent>
                     {data.reduce<JSX.Element[]>((acc, item, i) => {
+                        console.log(item.time)
                         acc.push(
                             <CarouselItem key={i + 1} className={"basis-1/5"}>
                                 <Card
