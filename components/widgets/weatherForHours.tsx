@@ -14,7 +14,7 @@ interface Props {
 
 
 export default function WeatherForHours({data, sun}: Props): JSX.Element {
-//this is actual
+//this is actual 23
     const sunRise = sun.sunrise.split(":")[0]
     const sunSet = sun.sunset.split(":")[0]
 
@@ -45,9 +45,8 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
                             </CarouselItem>
                         )
 
-                        if (item.time === sunRise || item.time === sunSet) {
-
-                            const isSunRise = item.time === sunRise
+                        if (item.time.includes(sunRise) || item.time.includes(sunSet)) {
+                            const isSunRise = item.time.includes(sunRise);
                             const addKey=isSunRise ? 10 : 11
                             acc.push(
                                 <CarouselItem key={(i + 1) * addKey} className={"basis-1/5"}>
