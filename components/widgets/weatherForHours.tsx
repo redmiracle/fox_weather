@@ -17,13 +17,13 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
 
     const sunRise = sun.sunrise.split(":")[0]
     const sunSet = sun.sunset.split(":")[0]
-
+     console.log("sds")
 
     return (
         <div className={`bgMirror p-2`}>
             <Carousel
                 opts={{
-                    align: "center",
+                    align:"end",
                 }}
                 className=""
             >
@@ -47,9 +47,12 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
                         )
 
                         if (item.time === sunRise || item.time === sunSet) {
+                            console.log("ddd")
+                            console.log(sunSet)
                             const isSunRise = item.time === sunRise
+                            const addKey=isSunRise ? 10 : 11
                             acc.push(
-                                <CarouselItem key={(i + 1) * 10} className={"basis-1/5"}>
+                                <CarouselItem key={(i + 1) * addKey} className={"basis-1/5"}>
                                     <Card
                                         className={"text-white bg-transparent ring-0 shadow-0 border-0 flex-col items-center justify-center p-0 m-0"}>
                                         <CardHeader className={"mb-2 w-full p-0"}>
