@@ -5,7 +5,7 @@ import {Card, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import ConditionalImage from "@/components/features/conditionalImage";
 import {Sunrise, Sunset} from "lucide-react";
 import {convertTemperature} from "@/components/units/convertFunction";
-import {time} from "zod/v4/mini/iso";
+
 
 interface Props {
     data: dayDataType[]
