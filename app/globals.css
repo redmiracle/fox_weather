@@ -5,7 +5,7 @@
 
 @custom-variant dark (&:is(.dark *));
 body {
-    @apply min-h-dvh  bg-[radial-gradient(ellipse_80%_80%_at_30%_10%,#183E70_10%,#0A1934_90%)] text-white select-none  ;
+    @apply min-h-dvh bg-fixed  bg-[radial-gradient(ellipse_80%_80%_at_30%_10%,#183E70_10%,#0A1934_90%)] text-white select-none  ;
 }
 
 .bgMirror {
