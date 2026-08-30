@@ -11,7 +11,7 @@ interface Props {
 
 
 export default function WeatherForWeek({data}: Props) {
-
+//last versiaon 22
     const minWeekTemp = data.temperature.minTempWeek
     const maxWeekTemp = data.temperature.maxTempWeek
 
