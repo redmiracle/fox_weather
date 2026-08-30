@@ -23,8 +23,8 @@ export default function TemperatureStatus({dataWeekTemperature}: Props) {
             width: `${weight}px`,
             paddingLeft: `${paddingStart}px`,
             paddingRight: `${paddingEnd}px`,
-        }} className={"bg-black"}>
-            <div className={`bg-red-400 h-2`}></div>
+        }} className={"bg-black20 rounded-lg py-[1px]"}>
+            <div className={`bg-gradient-to-r from-red-400 to-red-600 h-2 rounded-lg`}></div>
         </div>
     )
 }

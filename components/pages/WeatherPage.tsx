@@ -39,10 +39,16 @@ export default function WeatherPage() {
     return (<div>
 
         {data &&
-            <div className={"px-2"}>
-                <CityWeather data={data.preview.current}/>
-                <WeatherForHours data={data.preview.forecast} sun={data.preview.week.temperature.days[0].sun}/>
-                <WeatherForWeek/>
+            <div className={"px-5"}>
+                <div className="mt-2">
+                    <CityWeather data={data.preview.current}/>
+                </div>
+                <div className="mt-4">
+                    <WeatherForHours data={data.preview.forecast} sun={data.preview.week.temperature.days[0].sun}/>
+                </div>
+                <div className="mt-6">
+                    <WeatherForWeek data={data.preview.week}/>
+                </div>
             </div>
 
         }

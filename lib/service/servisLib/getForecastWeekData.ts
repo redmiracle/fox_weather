@@ -23,7 +23,7 @@ export const getForecastWeekData = (data: forecastRequest): weekDadaType => {
 
     const getDay=(epoch: number) => {
 
-        if(isToday(epoch)) return "Now"
+        if(isToday(epoch)) return "Today"
         return new Date(epoch * 1000).toLocaleDateString("en-US", {
             weekday: "long",
             timeZone: "UTC",
