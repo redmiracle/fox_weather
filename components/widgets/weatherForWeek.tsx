@@ -17,7 +17,7 @@ export default function WeatherForWeek({data}: Props) {
 
 
     return (
-        <Card className={"bgMirror p-4 m-0"}>
+        <Card className={"bgMirror px-2 py-4 m-0"}>
             <CardHeader>
                 <p className={"border-b-1 text-white opacity-30"}>7-DAY FORECAST</p>
             </CardHeader>

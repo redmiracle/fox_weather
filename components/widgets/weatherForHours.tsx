@@ -25,7 +25,7 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
 
 
     return (
-        <Card className={`bgMirror p-4`}>
+        <Card className={`bgMirror p-0 px-2 py-4`}>
             <CardHeader>
                 <p className={"border-b-1 text-white opacity-30"}>7-DAY FORECAST</p>
             </CardHeader>
@@ -35,7 +35,7 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
                 }}
                 className=""
             >
-                <CarouselContent className="border-0 ms-6">
+                <CarouselContent className="border-0 mt-2">
                     {data.reduce<JSX.Element[]>((acc, item, i) => {
                         const time=addZero(item.time)
                         acc.push(
@@ -43,7 +43,7 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
                                 <Card
                                     className={"text-white bg-transparent ring-0 shadow-0 border-0 flex-col items-center justify-center p-0 m-0 "}>
                                     <CardHeader
-                                        className={"text-[13px] text-center w-full mb-2"}>{time}</CardHeader>
+                                        className={"text-[13px] text-center w-full mb-2  p-0"}>{time}</CardHeader>
                                     <div className={"mb-2"}>
                                         <ConditionalImage status={"" + item.condition.code}
                                                           isDay={time > sunRise && time < sunSet}/>
