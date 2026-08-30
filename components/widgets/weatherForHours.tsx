@@ -25,14 +25,17 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
 
 
     return (
-        <div className={`bgMirror p-2`}>
+        <Card className={`bgMirror p-4`}>
+            <CardHeader>
+                <p className={"border-b-1 text-white opacity-30"}>7-DAY FORECAST</p>
+            </CardHeader>
             <Carousel
                 opts={{
-                    align:"end",
+                    align:"start",
                 }}
                 className=""
             >
-                <CarouselContent>
+                <CarouselContent className="border-0 ms-6">
                     {data.reduce<JSX.Element[]>((acc, item, i) => {
                         const time=addZero(item.time)
                         acc.push(
@@ -83,7 +86,7 @@ export default function WeatherForHours({data, sun}: Props): JSX.Element {
                 {/*<CarouselPrevious />*/}
                 {/*<CarouselNext />*/}
             </Carousel>
-        </div>
+        </Card>
     )
 }
 
