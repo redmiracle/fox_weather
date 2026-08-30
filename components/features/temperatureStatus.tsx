@@ -13,14 +13,9 @@ interface Props {
 export default function TemperatureStatus({dataWeekTemperature}: Props) {
     const weight = 108.5
     const deltaTemp = Number(dataWeekTemperature.maxTempWeek) - Number(dataWeekTemperature.minTempWeek)
-    console.log(deltaTemp)
-    const step=weight/deltaTemp
-    console.log(step)
-
-    const paddingStart=(Number(dataWeekTemperature.minTemperature)-Number(dataWeekTemperature.minTempWeek))*step
-    console.log(paddingStart)
-    const paddingEnd=weight-(Number(dataWeekTemperature.maxTemperature)-Number(dataWeekTemperature.minTempWeek))*step
-    console.log(paddingEnd)
+    const step = weight / deltaTemp
+    const paddingStart = (Number(dataWeekTemperature.minTemperature) - Number(dataWeekTemperature.minTempWeek)) * step
+    const paddingEnd = weight - (Number(dataWeekTemperature.maxTemperature) - Number(dataWeekTemperature.minTempWeek)) * step
 
 
     return (

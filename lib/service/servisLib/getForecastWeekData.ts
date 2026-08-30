@@ -36,7 +36,9 @@ export const getForecastWeekData = (data: forecastRequest): weekDadaType => {
         const {day,astro}=data
         return{
             day:getDay(data.date_epoch),
-            image:day.condition.icon,
+            image:""+day.condition.icon,
+            conditionalCode:""+day.condition.code,
+            conditionalStatus:""+day.condition.text,
             minTemperature:""+day.mintemp_c,
             maxTemperature:""+day.maxtemp_c,
             moon:{

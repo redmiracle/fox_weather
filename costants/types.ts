@@ -68,6 +68,8 @@ export interface weekDataForDayType {
     image: string,
     minTemperature: string,
     maxTemperature: string,
+    conditionalCode:string,
+    conditionalStatus:string,
     moon: {
         moonIllumination: number,
         moon_phase: string,

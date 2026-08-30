@@ -13,6 +13,7 @@ export const getWeatherData = async (): Promise<weatherData> => {
     const weatherData = await response.json() as weatherData;
     const checkData = weatherData.preview
 
+
     if (!checkData || !checkData.current || !checkData.forecast || !checkData.week) {
         throw new Error("Data is not available");
 
