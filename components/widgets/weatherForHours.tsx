@@ -15,7 +15,7 @@ interface Props {
 
 
 export default function WeatherForHours({data, sun}: Props): JSX.Element {
-//this is actual 23
+//this is actual 30
     const sunRise = sun.sunrise.split(":")[0]
     const sunSet = sun.sunset.split(":")[0]
     const addZero=(time:string) => {
