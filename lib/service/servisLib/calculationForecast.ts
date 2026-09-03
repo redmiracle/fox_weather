@@ -1,22 +1,22 @@
 import {NextRequest} from "next/server";
 import {coordinate} from "@/costants/types";
+import {coordinatesCity} from "@/costants/coordinate";
 
 
-export const getCoordinate=(request:NextRequest):coordinate=> {
-    const {searchParams}=new URL(request.url);
-    const lat=searchParams.get("lat");
-    const lng=searchParams.get("lng");
+export const getCoordinate = (request: NextRequest): coordinate => {
+    const {searchParams} = new URL(request.url);
+    const lat = searchParams.get("lat");
+    const lng = searchParams.get("lng");
 
-    if(lat && lng){
+    if (lat && lng) {
         console.log(`lat=${lat},lng=${lng}`);
-        return {lat,lng};
+        return {lat, lng};
 
     }
-     console.log(`error lat=${lat},lng=${lng}`)
-    return {lat:"31.8014",lng:"34.6435"};
+    console.log(`error lat=${lat},lng=${lng}`)
+    return {lat: "31.8014", lng: "34.6435"};
 
 }
-
 
 
 export const isToday = (epoch: number) => {
@@ -31,13 +31,12 @@ export const isToday = (epoch: number) => {
 };
 
 
-export const getDaysUntilFullMoon=(epoch:number)=> {
+export const getDaysUntilFullMoon = (epoch: number) => {
     const msInDay = 86400000;
     const lunarMonth = 29.53059;
     const knownNewMoon = new Date(Date.UTC(2000, 0, 6, 18, 14, 0)); // Точка отсчета
 
     const targetDate = new Date(epoch * 1000)
-
 
 
     const diffDays = (targetDate.getTime() - knownNewMoon.getTime()) / msInDay;
@@ -56,17 +55,49 @@ export const getDaysUntilFullMoon=(epoch:number)=> {
 }
 
 
-
-
-export const convertHour = (timePM:string,fix:number) => {
+export const convertHour = (timePM: string, fix: number) => {
     const time = new Date(`1970-01-01 ${timePM}`);
 
-    time.setMinutes(time.getMinutes() +fix);
+    time.setMinutes(time.getMinutes() + fix);
 
     return new Intl.DateTimeFormat("ru-RU", {
         hour: "2-digit",
         minute: "2-digit",
         hour12: false,
     }).format(time);
+
+}
+
+export const checkCoordinates = (lat: string, lng: string) => {
+
+    const invitationalValue = {
+        diffLat: 100,
+        diffLon: 100,
+        city: "",
+        newLat: "",
+        newLon: ""
+
+    }
+
+    const result = coordinatesCity.reduce((acc, value) => {
+        const cityLat = Number(value.coordinates.lat)
+        const cityLon = Number(value.coordinates.lon)
+        const curLat = Number(lat)
+        const curLon = Number(lng)
+
+        const checkLat = Math.abs(curLat - cityLat);
+        const checkLon = Math.abs(curLon - cityLon);
+
+        if (checkLat < acc.diffLat && checkLon < acc.diffLon) {
+            acc.diffLat = checkLat;
+            acc.diffLon = checkLon;
+            acc.city = value.name
+            acc.newLat = "" + cityLat;
+            acc.newLon = "" + cityLon;
+        }
+        return acc
+    }, invitationalValue);
+
+    return result;
 
 }

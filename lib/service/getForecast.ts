@@ -3,6 +3,7 @@ import {coordinate, forecastRequest, weatherData} from "@/costants/types";
 import {getCurrentData} from "@/lib/service/servisLib/getCurrentData";
 import {getForecastDayData} from "@/lib/service/servisLib/getForecastDayData";
 import {getForecastWeekData} from "@/lib/service/servisLib/getForecastWeekData";
+import {checkCoordinates} from "@/lib/service/servisLib/calculationForecast";
 
 interface error {
     error: string;
@@ -10,7 +11,8 @@ interface error {
 
 export async function getForecast(coordinates:coordinate):Promise<weatherData|error> {
     const {lat, lng} = coordinates;
-    const reqCor=`${lat},${lng}`;
+    const {newLat,newLon}=checkCoordinates(lat, lng);
+    const reqCor=`${newLat},${newLon}`;
 
     try {
 
